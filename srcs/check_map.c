@@ -5,42 +5,83 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cvine <cvine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/28 15:59:36 by cvine             #+#    #+#             */
-/*   Updated: 2022/01/28 19:56:40 by cvine            ###   ########.fr       */
+/*   Created: 2022/01/29 12:02:57 by cvine             #+#    #+#             */
+/*   Updated: 2022/01/30 16:35:26 by cvine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	check_walls(int height, int width, char *line)
+void	check_chars(t_map *map, char *line)
 {
-	int i;
+	int	i;
 
-	i = 0;
-	if (ft_strrchr(line, '\n')) /*все строки кроме (возможно) последней)*/
+	i = 1;
+	while (i != map->width - 1)
 	{
-		while (line[i] && line[i] != '\n')
-		{
-			if ((!height && line[i] != '1')
-			|| (height > 0 && (line[0] != '1' || line[width - 1] != '1')))
-				error("Error\nHole in the upper wall");
-			i++;
-		}
-	}
-	else /*последняя строка*/
-	{
-		if (height < 3) /*меньше трех строк*/
-			error("Error\nMap is composed incorrectly");
-		while (line[i])
-		{
-			if (line[i] != '1')
-				error("Error\nHole in the side wall");
-			i++;
-		}
+		if (line[i] == 'E')
+			map->exit_num++;
+		else if (line[i] == 'C')
+			map->collect_num++;
+		else if (line[i] == 'P')
+			map->player_num++;
+		i++;
 	}
 }
 
-void	check_map(int argc, char **argv)
+void	check_walls(t_map *map, int width, char *line)
+{
+	int	i;
+
+	i = 0;
+	if (!line && map->end_of_map)
+		error("Error\nAn empty map or a hole in the bottom wall");
+	if ((line && !map->end_of_map) || !width)
+		return ;
+	if (width != map->width)
+		error("Error\nMap is not rectangular");
+	while (line[i] && line[i] != '\n' && line[i] == '1')
+		i++;
+	if (map->height > 1 && (line[i] == '\0' || line[i] == '\n'))
+	{
+		map->end_of_map = 0;
+		return ;
+	}
+	if ((map->height == 1 && line[i] && line[i] != '1' && line[i] != '\n')
+		|| (line[0] != '1' || line[width - 1] != '1'))
+		error("Error\nHole in the wall");
+	check_chars(map, line);
+}
+
+void	check_map(t_map	*map, char *line, int fd)
+{
+	int	i;
+	int	width;
+
+	i = -1;
+	line = get_next_line(fd);
+	while (line)
+	{
+		i++;
+		if (!strrchr(line, '\n'))
+			width = ft_strlen(line);
+		else
+			width = ft_strlen(line) - 1;
+		if (width && !map->width)
+			map->width = width;
+		if (width)
+			map->height++;
+		check_walls(map, width, line);
+		free(line);
+		line = get_next_line(fd);
+	}
+	if (map->end_of_map)
+		check_walls(map, width, line);
+	if (!(map->exit_num) || !(map->collect_num) || map->player_num != 1)
+		error("Error\nWrong map composition");
+}
+
+void	check_args(int argc, char **argv)
 {
 	if (argc != 2)
 		error("Error\nWrong argc");

@@ -25,7 +25,7 @@ B_OBJS	=	$(B_SRCS:%.c=%.o)
 
 CC		=	gcc
 
-CFLAGS	=	-Wall -Wextra -Werror -I$(HEADER)
+CFLAGS	=	-Wall -Wextra -Werror -I./includes
 
 RM		=	rm -f
 

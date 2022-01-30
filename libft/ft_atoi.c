@@ -6,11 +6,11 @@
 /*   By: cvine <cvine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 17:05:08 by cvine             #+#    #+#             */
-/*   Updated: 2022/01/14 19:57:59 by cvine            ###   ########.fr       */
+/*   Updated: 2022/01/29 18:59:07 by cvine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/libft.h"
+#include "libft.h"
 
 int	ft_atoi(const char *str)
 {

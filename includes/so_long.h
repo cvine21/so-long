@@ -6,7 +6,7 @@
 /*   By: cvine <cvine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 17:35:43 by cvine             #+#    #+#             */
-/*   Updated: 2022/01/28 19:19:14 by cvine            ###   ########.fr       */
+/*   Updated: 2022/01/30 19:57:16 by cvine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,41 +30,50 @@ typedef struct s_vars
 	void	*win;
 }	t_vars;
 
-typedef struct	s_img
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		width;
-	int		height;
-	char	*path;
-}	t_img;
+// typedef struct	s_img
+// {
+// 	void	*img;
+// 	char	*addr;
+// 	int		bits_per_pixel;
+// 	int		line_length;
+// 	int		endian;
+// 	int		width;
+// 	int		height;
+// 	char	*path;
+// }	t_img;
 
-typedef struct	s_dwg
-{
-	t_img	*wall;
-	t_img	*player;
-	t_img	*exit;
-	t_img	*ground;
-	t_img	*collectible;
-}	t_dwg;
+// typedef struct	s_dwg
+// {
+// 	void	*wall;
+// 	void	*player;
+// 	void	*exit;
+// 	void	*ground;
+// 	void	*collectible;
+// }	t_dwg;
 
 typedef struct s_map
 {
+	void	*wall;
+	void	*player;
+	void	*exit;
+	void	*ground;
+	void	*collectible;
+
 	char	**content;
 	int		width;
 	int		height;
-	char	*exit_num;
-	char	*player_num;
-	char	*collect_num;
+	int		exit_num;
+	int		player_num;
+	int		collect_num;
+	int		end_of_map;
 }	t_map;
 
+t_map	*map_init(void);
+void	draw_map(t_vars *vars, t_map *map, int width, int height);
 
 void	error(char *errname);
-void	check_map(int argc, char **argv);
-void	check_walls(int height, int width, char *line);
-void	read_map(char *argv);
+void	check_args(int argc, char **argv);
+void	check_map(t_map	*map, char *line, int fd);
+void	create_map(char *argv, t_map *map);
 
 #endif
