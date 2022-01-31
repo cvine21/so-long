@@ -6,13 +6,13 @@
 /*   By: cvine <cvine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 12:02:57 by cvine             #+#    #+#             */
-/*   Updated: 2022/01/30 16:35:26 by cvine            ###   ########.fr       */
+/*   Updated: 2022/01/31 19:16:28 by cvine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	check_chars(t_map *map, char *line)
+void	check_chars(t_game *map, char *line)
 {
 	int	i;
 
@@ -29,7 +29,7 @@ void	check_chars(t_map *map, char *line)
 	}
 }
 
-void	check_walls(t_map *map, int width, char *line)
+void	check_walls(t_game *map, int width, char *line)
 {
 	int	i;
 
@@ -53,7 +53,7 @@ void	check_walls(t_map *map, int width, char *line)
 	check_chars(map, line);
 }
 
-void	check_map(t_map	*map, char *line, int fd)
+void	check_map(t_game	*map, char *line, int fd)
 {
 	int	i;
 	int	width;

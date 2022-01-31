@@ -6,7 +6,7 @@
 /*   By: cvine <cvine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 17:35:46 by cvine             #+#    #+#             */
-/*   Updated: 2022/01/30 18:21:02 by cvine            ###   ########.fr       */
+/*   Updated: 2022/01/31 19:16:28 by cvine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	open_map(char *argv, int fd)
 	return (fd);
 }
 
-void	fill_map(t_map *map, int fd, char *argv, char *line)
+void	fill_map(t_game *map, int fd, char *argv, char *line)
 {
 	int	i;
 
@@ -48,11 +48,11 @@ void	fill_map(t_map *map, int fd, char *argv, char *line)
 	close(fd);
 }
 
-t_map	*map_init(void)
+t_game	*map_init(void)
 {
-	t_map	*map;
+	t_game	*map;
 
-	map = malloc(sizeof(t_map));
+	map = malloc(sizeof(t_game));
 	if (!map)
 	{
 		perror("Allocation of memory to map failed");
@@ -67,7 +67,7 @@ t_map	*map_init(void)
 	return (map);
 }
 
-void	create_map(char *argv, t_map	*map)
+void	create_map(char *argv, t_game	*map)
 {
 	int		fd;
 
