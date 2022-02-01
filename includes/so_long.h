@@ -6,30 +6,27 @@
 /*   By: cvine <cvine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 17:35:43 by cvine             #+#    #+#             */
-/*   Updated: 2022/01/31 19:16:55 by cvine            ###   ########.fr       */
+/*   Updated: 2022/02/01 15:46:02 by cvine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
+
+# define W			13
+# define A			1
+# define S			2
+# define D			0
+# define ESC		53
+# define DESTROY	17
+# define PXL_HEIGHT	64
+# define PXL_WIDTH	64
+
 # include "libft.h"
 # include <mlx.h>
 # include <stdio.h>
 # include <fcntl.h>
 # include <string.h>
-# define W			119
-# define A			115
-# define S			97
-# define D			100
-# define ESC		97307
-# define DESTROY	17
-# define PXL_HEIGHT	64
-# define PXL_WIDTH	64
-
-// typedef struct s_so_long
-// {
-
-// }	t_so_long;
 
 typedef struct s_player
 {
@@ -38,53 +35,35 @@ typedef struct s_player
 	int	moves;
 }	t_player;
 
-typedef struct s_vars
+typedef struct	s_img
 {
-	void	*mlx;
-	void	*win;
-}	t_vars;
-
-// typedef struct	s_img
-// {
-// 	void	*img;
-// 	char	*addr;
-// 	int		bits_per_pixel;
-// 	int		line_length;
-// 	int		endian;
-// 	int		width;
-// 	int		height;
-// 	char	*path;
-// }	t_img;
-
-// typedef struct	s_dwg
-// {
-// 	void	*wall;
-// 	void	*player;
-// 	void	*exit;
-// 	void	*ground;
-// 	void	*collectible;
-// }	t_dwg;
+	void	*wall;
+	void	*player;
+	void	*exit;
+	void	*ground;
+	void	*collectible;
+	int		width;
+	int		height;
+}	t_img;
 
 typedef struct s_game
 {
-	char		**content;
-	void		*wall;
-	void		*player;
-	void		*exit;
-	void		*ground;
-	void		*collectible;
-	int			width;
-	int			height;
-	int			exit_num;
-	int			player_num;
-	int			collect_num;
+	t_img		img;
+	t_player	hero;
+	void		*mlx;
+	void		*win;
+	char		**map;
+	int			e_num;
+	int			p_num;
+	int			c_num;
 	int			end_of_map;
 }	t_game;
 
-void	handle_keypress(int keysym, t_vars *vars, t_game *map);
-void	xmp_to_img(t_vars *vars, t_game *map, int width, int height);
+int		close_window(t_game *game);
+int		handle_keypress(int keysym, t_game *game);
+void	xmp_to_img(t_game *map, int width, int height);
 t_game	*map_init(void);
-void	draw_map(t_vars *vars, t_game *map);
+void	draw_map(t_game *game, int width, int height);
 
 void	error(char *errname);
 void	check_args(int argc, char **argv);

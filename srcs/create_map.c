@@ -6,7 +6,7 @@
 /*   By: cvine <cvine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 17:35:46 by cvine             #+#    #+#             */
-/*   Updated: 2022/01/31 19:16:28 by cvine            ###   ########.fr       */
+/*   Updated: 2022/02/01 15:46:02 by cvine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ int	open_map(char *argv, int fd)
 	return (fd);
 }
 
-void	fill_map(t_game *map, int fd, char *argv, char *line)
+void	fill_map(t_game *game, int fd, char *argv, char *line)
 {
 	int	i;
 
 	i = 0;
-	map->content = malloc(sizeof(char *) * map->height);
-	if (!map->content)
+	game->map = malloc(sizeof(char *) * game->img.height);
+	if (!game->map)
 	{
 		perror("Allocation of memory to map->content failed");
 		exit (1);
@@ -38,8 +38,8 @@ void	fill_map(t_game *map, int fd, char *argv, char *line)
 	line = get_next_line(fd);
 	while (line)
 	{
-		map->content[i] = ft_strtrim(line, "\n");
-		if (!map->content[i])
+		game->map[i] = ft_strtrim(line, "\n");
+		if (!game->map[i])
 			error("Error\nMap content memory allocation failure");
 		free(line);
 		line = get_next_line(fd);
@@ -58,11 +58,11 @@ t_game	*map_init(void)
 		perror("Allocation of memory to map failed");
 		exit (1);
 	}
-	map->width = 0;
-	map->height = 0;
-	map->player_num = 0;
-	map->collect_num = 0;
-	map->exit_num = 0;
+	map->img.width = 0;
+	map->img.height = 0;
+	map->p_num = 0;
+	map->c_num = 0;
+	map->e_num = 0;
 	map->end_of_map = 1;
 	return (map);
 }

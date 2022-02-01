@@ -6,7 +6,7 @@
 /*   By: cvine <cvine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 12:02:57 by cvine             #+#    #+#             */
-/*   Updated: 2022/01/31 19:16:28 by cvine            ###   ########.fr       */
+/*   Updated: 2022/02/01 15:46:02 by cvine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ void	check_chars(t_game *map, char *line)
 	int	i;
 
 	i = 1;
-	while (i != map->width - 1)
+	while (i != map->img.width - 1)
 	{
 		if (line[i] == 'E')
-			map->exit_num++;
+			map->e_num++;
 		else if (line[i] == 'C')
-			map->collect_num++;
+			map->c_num++;
 		else if (line[i] == 'P')
-			map->player_num++;
+			map->p_num++;
 		i++;
 	}
 }
@@ -38,16 +38,16 @@ void	check_walls(t_game *map, int width, char *line)
 		error("Error\nAn empty map or a hole in the bottom wall");
 	if ((line && !map->end_of_map) || !width)
 		return ;
-	if (width != map->width)
+	if (width != map->img.width)
 		error("Error\nMap is not rectangular");
 	while (line[i] && line[i] != '\n' && line[i] == '1')
 		i++;
-	if (map->height > 1 && (line[i] == '\0' || line[i] == '\n'))
+	if (map->img.height > 1 && (line[i] == '\0' || line[i] == '\n'))
 	{
 		map->end_of_map = 0;
 		return ;
 	}
-	if ((map->height == 1 && line[i] && line[i] != '1' && line[i] != '\n')
+	if ((map->img.height == 1 && line[i] && line[i] != '1' && line[i] != '\n')
 		|| (line[0] != '1' || line[width - 1] != '1'))
 		error("Error\nHole in the wall");
 	check_chars(map, line);
@@ -67,17 +67,17 @@ void	check_map(t_game	*map, char *line, int fd)
 			width = ft_strlen(line);
 		else
 			width = ft_strlen(line) - 1;
-		if (width && !map->width)
-			map->width = width;
+		if (width && !map->img.width)
+			map->img.width = width;
 		if (width)
-			map->height++;
+			map->img.height++;
 		check_walls(map, width, line);
 		free(line);
 		line = get_next_line(fd);
 	}
 	if (map->end_of_map)
 		check_walls(map, width, line);
-	if (!(map->exit_num) || !(map->collect_num) || map->player_num != 1)
+	if (!(map->e_num) || !(map->c_num) || map->p_num != 1)
 		error("Error\nWrong map composition");
 }
 
