@@ -1,16 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   interact.c                                         :+:      :+:    :+:   */
+/*   press_key.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cvine <cvine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 14:45:42 by cvine             #+#    #+#             */
-/*   Updated: 2022/02/01 15:58:17 by cvine            ###   ########.fr       */
+/*   Updated: 2022/02/01 16:05:30 by cvine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int	close_window(t_game *game)
+{
+	mlx_destroy_window(game->mlx, game->win);
+	exit (0);
+}
 
 void	move_player(t_game *game, int x, int y)
 {
@@ -22,10 +28,10 @@ void	move_player(t_game *game, int x, int y)
 		exit (0);
 	}
 	mlx_put_image_to_window(game->mlx, game->win, game->img.ground,
-			PXL_WIDTH * game->hero.x, PXL_HEIGHT * game->hero.y);
+		PIXEL * game->hero.x, PIXEL * game->hero.y);
 	if (game->map[game->hero.y][game->hero.x] == 'E')
 		mlx_put_image_to_window(game->mlx, game->win, game->img.exit,
-			PXL_WIDTH * game->hero.x, PXL_HEIGHT * game->hero.y);
+			PIXEL * game->hero.x, PIXEL * game->hero.y);
 	game->hero.x += x;
 	game->hero.y += y;
 	game->hero.moves++;
@@ -35,10 +41,10 @@ void	move_player(t_game *game, int x, int y)
 		game->map[game->hero.y][game->hero.x] = '0';
 	}
 	mlx_put_image_to_window(game->mlx, game->win, game->img.player,
-		PXL_WIDTH * game->hero.x, PXL_HEIGHT * game->hero.y);
+		PIXEL * game->hero.x, PIXEL * game->hero.y);
 }
 
-int	handle_keypress(int keysym, t_game *game)
+int	press_key(int keysym, t_game *game)
 {
 	if (keysym == ESC)
 		close_window(game);

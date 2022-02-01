@@ -8,8 +8,8 @@ HEADER_PATH	=	includes/
 
 LIBFT		=	libft.a
 
-SRCS_LST	=	so_long.c	check_map.c	error.c	create_map.c\
-				draw_map.c	interact.c
+SRCS_LST	=	so_long.c		check_map.c		error.c\
+				create_map.c	draw_map.c		press_key.c
 
 SRCS		=	$(addprefix $(SRCS_PATH), $(SRCS_LST))
 

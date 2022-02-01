@@ -6,7 +6,7 @@
 /*   By: cvine <cvine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 17:35:43 by cvine             #+#    #+#             */
-/*   Updated: 2022/02/01 15:46:02 by cvine            ###   ########.fr       */
+/*   Updated: 2022/02/01 16:05:38 by cvine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@
 # define D			0
 # define ESC		53
 # define DESTROY	17
-# define PXL_HEIGHT	64
-# define PXL_WIDTH	64
+# define PIXEL		64
 
 # include "libft.h"
 # include <mlx.h>
@@ -60,7 +59,7 @@ typedef struct s_game
 }	t_game;
 
 int		close_window(t_game *game);
-int		handle_keypress(int keysym, t_game *game);
+int		press_key(int keysym, t_game *game);
 void	xmp_to_img(t_game *map, int width, int height);
 t_game	*map_init(void);
 void	draw_map(t_game *game, int width, int height);

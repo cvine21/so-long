@@ -6,7 +6,7 @@
 /*   By: cvine <cvine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 19:05:15 by cvine             #+#    #+#             */
-/*   Updated: 2022/02/01 12:29:55 by cvine            ###   ########.fr       */
+/*   Updated: 2022/02/01 16:05:30 by cvine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,23 @@ void	xpm_to_img(t_game *game, int j, int i)
 		while (++j < game->img.width)
 		{
 			mlx_put_image_to_window(game->mlx, game->win,
-				game->img.ground, PXL_WIDTH * j, PXL_HEIGHT * i);
+				game->img.ground, PIXEL * j, PIXEL * i);
 			if (game->map[i][j] == '1')
 				mlx_put_image_to_window(game->mlx, game->win,
-					game->img.wall, PXL_WIDTH * j, PXL_HEIGHT * i);
+					game->img.wall, PIXEL * j, PIXEL * i);
 			else if (game->map[i][j] == 'P')
 			{
 				mlx_put_image_to_window(game->mlx, game->win,
-					game->img.player, PXL_WIDTH * j, PXL_HEIGHT * i);
+					game->img.player, PIXEL * j, PIXEL * i);
 				game->hero.x = j;
 				game->hero.y = i;
 			}
 			else if (game->map[i][j] == 'C')
 				mlx_put_image_to_window(game->mlx, game->win,
-					game->img.collectible, PXL_WIDTH * j, PXL_HEIGHT * i);
+					game->img.collectible, PIXEL * j, PIXEL * i);
 			else if (game->map[i][j] == 'E')
 				mlx_put_image_to_window(game->mlx, game->win,
-					game->img.exit, PXL_WIDTH * j, PXL_HEIGHT * i);
+					game->img.exit, PIXEL * j, PIXEL * i);
 		}
 	}
 }
