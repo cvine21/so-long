@@ -14,9 +14,9 @@
 # define SO_LONG_H
 
 # define W			13
-# define A			1
-# define S			2
-# define D			0
+# define A			0
+# define S			1
+# define D			2
 # define ESC		53
 # define DESTROY	17
 # define PIXEL		64

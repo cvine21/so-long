@@ -4,6 +4,8 @@ LIBFT_PATH	=	libft/
 
 SRCS_PATH	=	srcs/
 
+B_SRCS_PATH	= 	bonus/
+
 HEADER_PATH	=	includes/
 
 LIBFT		=	libft.a
@@ -11,11 +13,18 @@ LIBFT		=	libft.a
 SRCS_LST	=	so_long.c		check_map.c		error.c\
 				create_map.c	draw_map.c		press_key.c
 
+B_SRCS_LST	=	so_long_bonus.c		check_map_bonus.c	error_bonus.c\
+				create_map_bonus.c	draw_map_bonus.c	press_key_bonus.c
+
 SRCS		=	$(addprefix $(SRCS_PATH), $(SRCS_LST))
+
+B_SRCS		= 	$(addprefix $(B_SRCS_PATH), $(B_SRCS_LST))
 
 HEADER		=	$(addprefix $(HEADER_PATH), so_long.h)
 
 OBJS		=	$(patsubst %.c, %.o, $(SRCS))
+
+B_OBJS		=	$(patsubst %.c, %.o, $(B_SRCS))
 
 CC			=	gcc
 
@@ -29,9 +38,13 @@ CFLAGS		=	-Wall -Wextra -Werror $(INCLUDES)
 
 RM			=	rm -f
 
-.PHONY		:	all clean fclean re
+.PHONY		:	all clean fclean re bonus
 
 all			:	$(NAME)
+
+bonus		: 	$(B_OBJS) $(HEADER)
+	$(MAKE) -C $(LIBFT_PATH)
+	$(CC) $(CFLAGS) $(LIBFT_FLAGS) $(MLX_FLAGS) $(B_SRCS) -o $(NAME)
 
 $(NAME)		:	$(OBJS) $(HEADER)
 	$(MAKE) -C $(LIBFT_PATH)
@@ -42,7 +55,7 @@ $(NAME)		:	$(OBJS) $(HEADER)
 
 clean		:
 	$(MAKE) clean -C $(LIBFT_PATH)
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(B_OBJS)
 
 fclean		:	clean
 	$(MAKE) fclean -C $(LIBFT_PATH)
