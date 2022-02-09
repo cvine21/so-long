@@ -35,13 +35,16 @@ void	move_player(t_game *game, int x, int y)
 	game->hero.x += x;
 	game->hero.y += y;
 	game->hero.moves++;
-	if (game->map[game->hero.y + y][game->hero.x + x] == 'C')
+	if (game->map[game->hero.y][game->hero.x] == 'C')
 	{
 		game->c_num--;
 		game->map[game->hero.y][game->hero.x] = '0';
 	}
 	mlx_put_image_to_window(game->mlx, game->win, game->img.player,
 		PIXEL * game->hero.x, PIXEL * game->hero.y);
+	printf("MOVES:%d\n", game->hero.moves);
+	if (game->map[game->hero.y][game->hero.x] == 'E' && game->c_num)
+		printf("Sorry, collect all the aplles\n");
 }
 
 int	press_key(int keysym, t_game *game)
@@ -56,6 +59,5 @@ int	press_key(int keysym, t_game *game)
 		move_player(game, 1, 0);
 	else if (keysym == D)
 		move_player(game, -1, 0);
-	printf("MOVES:%d\n", game->hero.moves);
 	return (0);
 }

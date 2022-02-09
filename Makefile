@@ -19,11 +19,11 @@ OBJS		=	$(patsubst %.c, %.o, $(SRCS))
 
 CC			=	gcc
 
-INCLUDES	=	-I$(HEADER_PATH) -I$(LIBFT_PATH)$(HEADER_PATH) -Imlx
+INCLUDES	=	-I$(HEADER_PATH) -I$(LIBFT_PATH)$(HEADER_PATH) -I./minilibx_opengl_20191021
 
 LIBFT_FLAGS	=	-L$(LIBFT_PATH) -lft
 
-MLX_FLAGS	=	-lmlx -framework OpenGL -framework AppKit
+MLX_FLAGS	=	-L./minilibx_opengl_20191021 -lmlx -framework OpenGL -framework AppKit
 
 CFLAGS		=	-Wall -Wextra -Werror $(INCLUDES)
 
