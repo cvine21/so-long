@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int	open_map(char *argv, int fd)
 {
@@ -40,7 +40,7 @@ void	fill_map(t_game *game, int fd, char *argv, char *line)
 	{
 		game->map[i] = ft_strtrim(line, "\n");
 		if (!game->map[i])
-			error("Error\nMap content memory allocation failure");
+			terminate("Error\nMap content memory allocation failure", 1);
 		free(line);
 		line = get_next_line(fd);
 		i++;

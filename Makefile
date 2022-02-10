@@ -10,10 +10,10 @@ HEADER_PATH	=	includes/
 
 LIBFT		=	libft.a
 
-SRCS_LST	=	so_long.c		check_map.c		error.c\
+SRCS_LST	=	so_long.c		check_map.c		terminate.c\
 				create_map.c	draw_map.c		press_key.c
 
-B_SRCS_LST	=	so_long_bonus.c		check_map_bonus.c	error_bonus.c\
+B_SRCS_LST	=	so_long_bonus.c		check_map_bonus.c	terminate_bonus.c\
 				create_map_bonus.c	draw_map_bonus.c	press_key_bonus.c
 
 SRCS		=	$(addprefix $(SRCS_PATH), $(SRCS_LST))
@@ -21,6 +21,8 @@ SRCS		=	$(addprefix $(SRCS_PATH), $(SRCS_LST))
 B_SRCS		= 	$(addprefix $(B_SRCS_PATH), $(B_SRCS_LST))
 
 HEADER		=	$(addprefix $(HEADER_PATH), so_long.h)
+
+B_HEADER	= 	$(addprefix $(HEADER_PATH), so_long_bonus.h)
 
 OBJS		=	$(patsubst %.c, %.o, $(SRCS))
 
@@ -42,13 +44,13 @@ RM			=	rm -f
 
 all			:	$(NAME)
 
-bonus		: 	$(B_OBJS) $(HEADER)
-	$(MAKE) -C $(LIBFT_PATH)
-	$(CC) $(CFLAGS) $(LIBFT_FLAGS) $(MLX_FLAGS) $(B_SRCS) -o $(NAME)
-
 $(NAME)		:	$(OBJS) $(HEADER)
 	$(MAKE) -C $(LIBFT_PATH)
 	$(CC) $(CFLAGS) $(LIBFT_FLAGS) $(MLX_FLAGS) $(SRCS) -o $(NAME)
+
+bonus		: 	$(B_OBJS) $(B_HEADER)
+	$(MAKE) -C $(LIBFT_PATH)
+	$(CC) $(CFLAGS) $(LIBFT_FLAGS) $(MLX_FLAGS) $(B_SRCS) -o $(NAME)
 
 %.o			:	%.c $(HEADER)
 	$(CC) $(CFLAGS) -c $< -o $@

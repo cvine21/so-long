@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	xpm_to_img(t_game *game, int j, int i)
 {
@@ -39,6 +39,8 @@ void	xpm_to_img(t_game *game, int j, int i)
 					game->img.exit, PIXEL * j, PIXEL * i);
 		}
 	}
+	// mlx_put_image_to_window(game->mlx, game->win,
+	// 		game->img.sword, PIXEL * 0, PIXEL * 0);
 }
 
 void	draw_map(t_game *game, int width, int height)
@@ -49,19 +51,15 @@ void	draw_map(t_game *game, int width, int height)
 			"./assets/green.xpm", &width, &height);
 	game->img.player = mlx_xpm_file_to_image(game->mlx,
 			"./assets/rwalk1.xpm", &width, &height);
-	game->img.player = mlx_xpm_file_to_image(game->mlx,
-			"./assets/rwalk2.xpm", &width, &height);
-	game->img.player = mlx_xpm_file_to_image(game->mlx,
+	game->img.player1 = mlx_xpm_file_to_image(game->mlx,
 			"./assets/rwalk3.xpm", &width, &height);
-	game->img.player = mlx_xpm_file_to_image(game->mlx,
-			"./assets/rwalk4.xpm", &width, &height);
-	game->img.player = mlx_xpm_file_to_image(game->mlx,
+	game->img.player2 = mlx_xpm_file_to_image(game->mlx,
 			"./assets/rwalk5.xpm", &width, &height);
-	game->img.player = mlx_xpm_file_to_image(game->mlx,
-			"./assets/rwalk6.xpm", &width, &height);
 	game->img.collectible = mlx_xpm_file_to_image(game->mlx,
 			"./assets/apple.xpm", &width, &height);
 	game->img.exit = mlx_xpm_file_to_image(game->mlx,
 			"./assets/exit.xpm", &width, &height);
+	game->img.sword = mlx_xpm_file_to_image(game->mlx,
+			"./assets/Sword.xpm", &width, &height);
 	xpm_to_img(game, -1, -1);
 }

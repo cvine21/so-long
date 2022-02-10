@@ -35,11 +35,11 @@ void	check_walls(t_game *map, int width, char *line)
 
 	i = 0;
 	if (!line && map->end_of_map)
-		error("Error\nAn empty map or a hole in the bottom wall");
+		terminate("Error\nAn empty map or a hole in the bottom wall", 1);
 	if ((line && !map->end_of_map) || !width)
 		return ;
 	if (width != map->img.width)
-		error("Error\nMap is not rectangular");
+		terminate("Error\nMap is not rectangular", 1);
 	while (line[i] && line[i] != '\n' && line[i] == '1')
 		i++;
 	if (map->img.height > 1 && (line[i] == '\0' || line[i] == '\n'))
@@ -49,7 +49,7 @@ void	check_walls(t_game *map, int width, char *line)
 	}
 	if ((map->img.height == 1 && line[i] && line[i] != '1' && line[i] != '\n')
 		|| (line[0] != '1' || line[width - 1] != '1'))
-		error("Error\nHole in the wall");
+		terminate("Error\nHole in the wall", 1);
 	check_chars(map, line);
 }
 
@@ -78,15 +78,15 @@ void	check_map(t_game	*map, char *line, int fd)
 	if (map->end_of_map)
 		check_walls(map, width, line);
 	if (!(map->e_num) || !(map->c_num) || map->p_num != 1)
-		error("Error\nWrong map composition");
+		terminate("Error\nWrong map composition", 1);
 }
 
 void	check_args(int argc, char **argv)
 {
 	if (argc != 2)
-		error("Error\nWrong argc");
+		terminate("Error\nWrong argc", 1);
 	if (ft_strlen(argv[1]) < 5)
-		error("Error\nWrong filename");
+		terminate("Error\nWrong filename", 1);
 	if (ft_strncmp(argv[1] + ft_strlen(argv[1]) - 4, ".ber", 4))
-		error("Error\nWrong file extension");
+		terminate("Error\nWrong file extension", 1);
 }

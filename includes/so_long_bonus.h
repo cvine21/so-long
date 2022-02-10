@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # define W			13
 # define A			0
@@ -38,9 +38,12 @@ typedef struct	s_img
 {
 	void	*wall;
 	void	*player;
+    void    *player1;
+    void    *player2;
 	void	*exit;
 	void	*ground;
 	void	*collectible;
+	void	*sword;
 	int		width;
 	int		height;
 }	t_img;

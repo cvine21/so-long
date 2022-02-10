@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   terminate.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cvine <cvine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,8 +12,8 @@
 
 #include "so_long.h"
 
-void	error(char *errname)
+void	terminate(char *errname, int status)
 {
 	ft_putendl_fd(errname, 2);
-	exit (1);
+	exit (status);
 }

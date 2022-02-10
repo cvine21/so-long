@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int	main(int argc, char **argv)
 {
@@ -25,5 +25,6 @@ int	main(int argc, char **argv)
 	draw_map(game, 0, 0);
 	mlx_hook(game->win, 2, 1L << 0, press_key, game);
 	mlx_hook(game->win, DESTROY, 1L << 0, close_window, game);
+	// mlx_loop_hook(game->win, press_key, game);
 	mlx_loop(game->mlx);
 }
