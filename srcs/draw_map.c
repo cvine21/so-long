@@ -48,7 +48,7 @@ void	draw_map(t_game *game, int width, int height)
 	game->img.ground = mlx_xpm_file_to_image(game->mlx,
 			"./assets/green.xpm", &width, &height);
 	game->img.player = mlx_xpm_file_to_image(game->mlx,
-			"./assets/frog.xpm", &width, &height);
+			"./assets/rfrog.xpm", &width, &height);
 	game->img.collectible = mlx_xpm_file_to_image(game->mlx,
 			"./assets/apple.xpm", &width, &height);
 	game->img.exit = mlx_xpm_file_to_image(game->mlx,
