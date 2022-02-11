@@ -37,6 +37,9 @@ void	xpm_to_img(t_game *game, int j, int i)
 			else if (game->map[i][j] == 'E')
 				mlx_put_image_to_window(game->mlx, game->win,
 					game->img.exit, PIXEL * j, PIXEL * i);
+			else if (game->map[i][j] == 'X')
+				mlx_put_image_to_window(game->mlx, game->win,
+					game->img.enemy, PIXEL * j, PIXEL * i);
 		}
 	}
 	mlx_put_image_to_window(game->mlx, game->win, game->img.sword, 0, 0);
@@ -52,6 +55,7 @@ void	draw_map(t_game *game, int width, int height)
 	game->img.collectible = mlx_xpm_file_to_image(game->mlx,
 			COLLECT, &width, &height);
 	game->img.exit = mlx_xpm_file_to_image(game->mlx, EXIT, &width, &height);
+	game->img.enemy = mlx_xpm_file_to_image(game->mlx, ENEMY1, &width, &height);
 	game->img.sword = mlx_xpm_file_to_image(game->mlx, SWORD, &width, &height);
 	xpm_to_img(game, -1, -1);
 }

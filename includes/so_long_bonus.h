@@ -31,6 +31,8 @@
 # define PLAYER		"./assets/rfrog.xpm"
 # define COLLECT	"./assets/apple.xpm"
 # define EXIT		"./assets/exit.xpm"
+# define ENEMY1		"./assets/open_wings.xpm"
+# define ENEMY2		"./assets/closed_wings.xpm"
 # define SWORD		"./assets/Sword.xpm"
 
 # include "libft.h"
@@ -48,6 +50,12 @@ typedef struct s_player
 	int	dir_flag;
 }	t_player;
 
+typedef	struct  s_enemy
+{
+	int		wing_flag;
+}	t_enemy;
+
+
 typedef struct	s_img
 {
 	void	*wall;
@@ -55,6 +63,7 @@ typedef struct	s_img
 	void	*exit;
 	void	*ground;
 	void	*collectible;
+	void	*enemy;
 	void	*sword;
 	int		width;
 	int		height;
@@ -64,6 +73,7 @@ typedef struct s_game
 {
 	t_img		img;
 	t_player	hero;
+	t_enemy		enemy;
 	void		*mlx;
 	void		*win;
 	char		**map;
