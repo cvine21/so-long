@@ -20,6 +20,18 @@
 # define ESC		53
 # define DESTROY	17
 # define PIXEL		64
+# define RIGHT		"./assets/rfrog.xpm"
+# define RIGHT1		"./assets/rfrog1.xpm"
+# define RIGHT2		"./assets/rfrog2.xpm"
+# define LEFT		"./assets/lfrog.xpm"
+# define LEFT1		"./assets/lfrog1.xpm"
+# define LEFT2		"./assets/lfrog2.xpm"
+# define WALL		"./assets/box.xpm"
+# define GROUND		"./assets/green.xpm"
+# define PLAYER		"./assets/rfrog.xpm"
+# define COLLECT	"./assets/apple.xpm"
+# define EXIT		"./assets/exit.xpm"
+# define SWORD		"./assets/Sword.xpm"
 
 # include "libft.h"
 # include <mlx.h>
@@ -32,14 +44,14 @@ typedef struct s_player
 	int	x;
 	int	y;
 	int	moves;
+	int	move_flag;
+	int	dir_flag;
 }	t_player;
 
 typedef struct	s_img
 {
 	void	*wall;
 	void	*player;
-    void    *player1;
-    void    *player2;
 	void	*exit;
 	void	*ground;
 	void	*collectible;

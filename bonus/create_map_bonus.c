@@ -65,6 +65,8 @@ t_game	*map_init(void)
 	map->e_num = 0;
 	map->end_of_map = 1;
 	map->hero.moves = 0;
+	map->hero.move_flag = 0;
+	map->hero.dir_flag = 0;
 	return (map);
 }
 

@@ -44,21 +44,14 @@ void	xpm_to_img(t_game *game, int j, int i)
 
 void	draw_map(t_game *game, int width, int height)
 {
-	game->img.wall = mlx_xpm_file_to_image(game->mlx,
-			"./assets/box.xpm", &width, &height);
+	game->img.wall = mlx_xpm_file_to_image(game->mlx, WALL, &width, &height);
 	game->img.ground = mlx_xpm_file_to_image(game->mlx,
-			"./assets/green.xpm", &width, &height);
+			GROUND, &width, &height);
 	game->img.player = mlx_xpm_file_to_image(game->mlx,
-			"./assets/rfrog.xpm", &width, &height);
-	game->img.player1 = mlx_xpm_file_to_image(game->mlx,
-			"./assets/rfrog1.xpm", &width, &height);
-	game->img.player2 = mlx_xpm_file_to_image(game->mlx,
-			"./assets/rfrog2.xpm", &width, &height);
+			PLAYER, &width, &height);
 	game->img.collectible = mlx_xpm_file_to_image(game->mlx,
-			"./assets/apple.xpm", &width, &height);
-	game->img.exit = mlx_xpm_file_to_image(game->mlx,
-			"./assets/exit.xpm", &width, &height);
-	game->img.sword = mlx_xpm_file_to_image(game->mlx,
-			"./assets/Sword.xpm", &width, &height);
+			COLLECT, &width, &height);
+	game->img.exit = mlx_xpm_file_to_image(game->mlx, EXIT, &width, &height);
+	game->img.sword = mlx_xpm_file_to_image(game->mlx, SWORD, &width, &height);
 	xpm_to_img(game, -1, -1);
 }
