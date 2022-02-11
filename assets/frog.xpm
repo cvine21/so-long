@@ -1,5 +1,5 @@
 /* XPM */
-static char *Idle32x32[] = {
+static char *box32x32[] = {
 /* columns rows colors chars-per-pixel */
 "62 64 144 2 ",
 "   c None",

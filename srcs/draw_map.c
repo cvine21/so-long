@@ -44,11 +44,11 @@ void	xpm_to_img(t_game *game, int j, int i)
 void	draw_map(t_game *game, int width, int height)
 {
 	game->img.wall = mlx_xpm_file_to_image(game->mlx,
-			"./assets/Idle.xpm", &width, &height);
+			"./assets/box.xpm", &width, &height);
 	game->img.ground = mlx_xpm_file_to_image(game->mlx,
 			"./assets/green.xpm", &width, &height);
 	game->img.player = mlx_xpm_file_to_image(game->mlx,
-			"./assets/Idle32x32.xpm", &width, &height);
+			"./assets/frog.xpm", &width, &height);
 	game->img.collectible = mlx_xpm_file_to_image(game->mlx,
 			"./assets/apple.xpm", &width, &height);
 	game->img.exit = mlx_xpm_file_to_image(game->mlx,

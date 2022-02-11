@@ -64,6 +64,7 @@ t_game	*map_init(void)
 	map->c_num = 0;
 	map->e_num = 0;
 	map->end_of_map = 1;
+	map->hero.moves = 0;
 	return (map);
 }
 

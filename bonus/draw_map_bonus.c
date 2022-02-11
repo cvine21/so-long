@@ -39,14 +39,13 @@ void	xpm_to_img(t_game *game, int j, int i)
 					game->img.exit, PIXEL * j, PIXEL * i);
 		}
 	}
-	// mlx_put_image_to_window(game->mlx, game->win,
-	// 		game->img.sword, PIXEL * 0, PIXEL * 0);
+	mlx_put_image_to_window(game->mlx, game->win, game->img.sword, 0, 0);
 }
 
 void	draw_map(t_game *game, int width, int height)
 {
 	game->img.wall = mlx_xpm_file_to_image(game->mlx,
-			"./assets/Idle.xpm", &width, &height);
+			"./assets/box.xpm", &width, &height);
 	game->img.ground = mlx_xpm_file_to_image(game->mlx,
 			"./assets/green.xpm", &width, &height);
 	game->img.player = mlx_xpm_file_to_image(game->mlx,

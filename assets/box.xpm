@@ -1,5 +1,5 @@
 /* XPM */
-static char *Idle[] = {
+static char *box[] = {
 /* columns rows colors chars-per-pixel */
 "64 55 133 2 ",
 "   c None",
