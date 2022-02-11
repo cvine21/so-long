@@ -1,12 +1,14 @@
 NAME		=	so_long
 
-LIBFT_PATH	=	libft/
+LIBFT_DIR	=	libft/
 
-SRCS_PATH	=	srcs/
+MLX_DIR		=	minilibx_opengl_20191021/
 
-B_SRCS_PATH	= 	bonus/
+SRCS_DIR	=	srcs/
 
-HEADER_PATH	=	includes/
+B_SRCS_DIR	= 	bonus/
+
+HEADER_DIR	=	includes/
 
 LIBFT		=	libft.a
 
@@ -16,13 +18,13 @@ SRCS_LST	=	so_long.c		check_map.c		terminate.c\
 B_SRCS_LST	=	so_long_bonus.c		check_map_bonus.c	terminate_bonus.c\
 				create_map_bonus.c	draw_map_bonus.c	press_key_bonus.c
 
-SRCS		=	$(addprefix $(SRCS_PATH), $(SRCS_LST))
+SRCS		=	$(addprefix $(SRCS_DIR), $(SRCS_LST))
 
-B_SRCS		= 	$(addprefix $(B_SRCS_PATH), $(B_SRCS_LST))
+B_SRCS		= 	$(addprefix $(B_SRCS_DIR), $(B_SRCS_LST))
 
-HEADER		=	$(addprefix $(HEADER_PATH), so_long.h)
+HEADER		=	$(addprefix $(HEADER_DIR), so_long.h)
 
-B_HEADER	= 	$(addprefix $(HEADER_PATH), so_long_bonus.h)
+B_HEADER	= 	$(addprefix $(HEADER_DIR), so_long_bonus.h)
 
 OBJS		=	$(patsubst %.c, %.o, $(SRCS))
 
@@ -30,11 +32,11 @@ B_OBJS		=	$(patsubst %.c, %.o, $(B_SRCS))
 
 CC			=	gcc
 
-INCLUDES	=	-I$(HEADER_PATH) -I$(LIBFT_PATH)$(HEADER_PATH) -I./minilibx_opengl_20191021
+INCLUDES	=	-I$(HEADER_DIR) -I$(LIBFT_DIR)$(HEADER_DIR) -I$(MLX_DIR)
 
-LIBFT_FLAGS	=	-L$(LIBFT_PATH) -lft
+LIBFT_FLAGS	=	-L$(LIBFT_DIR) -lft
 
-MLX_FLAGS	=	-L./minilibx_opengl_20191021 -lmlx -framework OpenGL -framework AppKit
+MLX_FLAGS	=	-L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 
 CFLAGS		=	-Wall -Wextra -Werror $(INCLUDES)
 
@@ -45,22 +47,22 @@ RM			=	rm -f
 all			:	$(NAME)
 
 $(NAME)		:	$(OBJS) $(HEADER)
-	$(MAKE) -C $(LIBFT_PATH)
+	$(MAKE) -C $(LIBFT_DIR)
 	$(CC) $(CFLAGS) $(LIBFT_FLAGS) $(MLX_FLAGS) $(SRCS) -o $(NAME)
 
 bonus		: 	$(B_OBJS) $(B_HEADER)
-	$(MAKE) -C $(LIBFT_PATH)
+	$(MAKE) -C $(LIBFT_DIR)
 	$(CC) $(CFLAGS) $(LIBFT_FLAGS) $(MLX_FLAGS) $(B_SRCS) -o $(NAME)
 
 %.o			:	%.c $(HEADER)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean		:
-	$(MAKE) clean -C $(LIBFT_PATH)
+	$(MAKE) clean -C $(LIBFT_DIR)
 	$(RM) $(OBJS) $(B_OBJS)
 
 fclean		:	clean
-	$(MAKE) fclean -C $(LIBFT_PATH)
+	$(MAKE) fclean -C $(LIBFT_DIR)
 	$(RM) $(NAME)
 
 re			:	fclean all
