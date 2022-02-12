@@ -22,8 +22,7 @@ void	print_moves(t_game *game)
 {
 	char	*moves;
 
-	mlx_put_image_to_window(game->mlx, game->win,
-			game->img.sword, PIXEL * 0, PIXEL * 0);
+	mlx_put_image_to_window(game->mlx, game->win, game->img.sword, 0, 0);
 	moves = ft_strjoin("MOVES: ", ft_itoa(game->hero.moves));
 	mlx_string_put(game->mlx, game->win, PIXEL * 0, PIXEL / 1.75, 0x0, moves);
 	free(moves);
@@ -52,36 +51,30 @@ void	move_player(t_game *game, int x, int y)
 	if (game->map[game->hero.y][game->hero.x] == 'E' && !game->c_num)
 		terminate("YOU WON!", 0);
 	if (game->map[game->hero.y][game->hero.x] == 'E' && game->c_num)
-		printf("Sorry, collect all the aplles\n");
+		ft_putendl_fd("Sorry, collect all the aplles", 1);
 	if (game->map[game->hero.y][game->hero.x] == 'X')
 		terminate("WASTED", 0);
 }
 
 void	right_player_animate(t_game *game, int width, int height)
 {
-	if (!game->hero.move_flag)
+	if (!game->hero.move_flag || game->hero.move_flag == 2)
 	{
 		game->hero.move_flag = 1;
 		game->img.player = mlx_xpm_file_to_image(game->mlx,
-		RIGHT1, &width, &height);
+				RIGHT1, &width, &height);
 	}
 	else if (game->hero.move_flag == 1)
 	{
 		game->hero.move_flag = 2;
 		game->img.player = mlx_xpm_file_to_image(game->mlx,
-		RIGHT2, &width, &height);
-	}
-	else if (game->hero.move_flag == 2)
-	{
-		game->hero.move_flag = 1;
-		game->img.player = mlx_xpm_file_to_image(game->mlx,
-		RIGHT1, &width, &height);
+				RIGHT2, &width, &height);
 	}
 }
 
 void	left_player_animate(t_game *game, int width, int height)
 {
-	if (!game->hero.move_flag)
+	if (!game->hero.move_flag || game->hero.move_flag == 2)
 	{
 		game->hero.move_flag = 1;
 		game->img.player = mlx_xpm_file_to_image(game->mlx,
@@ -93,16 +86,11 @@ void	left_player_animate(t_game *game, int width, int height)
 		game->img.player = mlx_xpm_file_to_image(game->mlx,
 				LEFT2, &width, &height);
 	}
-	else if (game->hero.move_flag == 2)
-	{
-		game->hero.move_flag = 1;
-		game->img.player = mlx_xpm_file_to_image(game->mlx,
-				LEFT1, &width, &height);
-	}
 }
 
 int	press_key(int keysym, t_game *game)
 {
+	mlx_do_sync(game->mlx);
 	if (keysym == ESC)
 		close_window(game);
 	if (keysym == W || keysym == A || keysym == S || keysym == D)

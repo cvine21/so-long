@@ -55,7 +55,7 @@ void	draw_map(t_game *game, int width, int height)
 	game->img.collectible = mlx_xpm_file_to_image(game->mlx,
 			COLLECT, &width, &height);
 	game->img.exit = mlx_xpm_file_to_image(game->mlx, EXIT, &width, &height);
-	game->img.enemy = mlx_xpm_file_to_image(game->mlx, ENEMY1, &width, &height);
+	game->img.enemy = mlx_xpm_file_to_image(game->mlx, ENEMY, &width, &height);
 	game->img.sword = mlx_xpm_file_to_image(game->mlx, SWORD, &width, &height);
 	xpm_to_img(game, -1, -1);
 }

@@ -22,11 +22,6 @@ void	move_player(t_game *game, int x, int y)
 {
 	if (game->map[game->hero.y + y][game->hero.x + x] == '1')
 		return ;
-	if (game->map[game->hero.y + y][game->hero.x + x] == 'E' && !game->c_num)
-	{
-		printf("YOU WON!\n");
-		exit (0);
-	}
 	mlx_put_image_to_window(game->mlx, game->win, game->img.ground,
 		PIXEL * game->hero.x, PIXEL * game->hero.y);
 	if (game->map[game->hero.y][game->hero.x] == 'E')
@@ -43,6 +38,8 @@ void	move_player(t_game *game, int x, int y)
 	mlx_put_image_to_window(game->mlx, game->win, game->img.player,
 		PIXEL * game->hero.x, PIXEL * game->hero.y);
 	printf("MOVES:%d\n", game->hero.moves);
+	if (game->map[game->hero.y][game->hero.x] == 'E' && !game->c_num)
+		terminate("YOU WON!", 0);
 	if (game->map[game->hero.y][game->hero.x] == 'E' && game->c_num)
 		printf("Sorry, collect all the aplles\n");
 }

@@ -31,8 +31,13 @@
 # define PLAYER		"./assets/rfrog.xpm"
 # define COLLECT	"./assets/apple.xpm"
 # define EXIT		"./assets/exit.xpm"
-# define ENEMY1		"./assets/open_wings.xpm"
-# define ENEMY2		"./assets/closed_wings.xpm"
+# define ENEMY		"./assets/rbat1.xpm"
+# define ENEMY1		"./assets/rbat2.xpm"
+# define ENEMY2		"./assets/rbat3.xpm"
+# define ENEMY3		"./assets/rbat4.xpm"
+# define ENEMY4		"./assets/rbat5.xpm"
+# define ENEMY5		"./assets/rbat6.xpm"
+# define ENEMY6		"./assets/rbat7.xpm"
 # define SWORD		"./assets/Sword.xpm"
 
 # include "libft.h"
@@ -50,10 +55,10 @@ typedef struct s_player
 	int	dir_flag;
 }	t_player;
 
-typedef	struct  s_enemy
-{
-	int		wing_flag;
-}	t_enemy;
+// typedef	struct  s_enemy
+// {
+// 	int		wing_flag;
+// }	t_enemy;
 
 
 typedef struct	s_img
@@ -71,16 +76,17 @@ typedef struct	s_img
 
 typedef struct s_game
 {
-	t_img		img;
-	t_player	hero;
-	t_enemy		enemy;
 	void		*mlx;
 	void		*win;
 	char		**map;
+	t_img		img;
+	t_player	hero;
+	// t_enemy		enemy;
 	int			e_num;
 	int			p_num;
 	int			c_num;
 	int			end_of_map;
+	int			wing_flag;
 }	t_game;
 
 int		close_window(t_game *game);
@@ -91,7 +97,7 @@ void	draw_map(t_game *game, int width, int height);
 
 void	terminate(char *errname, int status);
 void	check_args(int argc, char **argv);
-void	check_map(t_game	*map, char *line, int fd);
+void	check_map(t_game *map, char *line, int fd);
 void	create_map(char *argv, t_game *map);
 
 #endif
