@@ -21,7 +21,7 @@ int	main(int argc, char **argv)
 	create_map (argv[1], game);
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx,
-			game->img.width * PIXEL, game->img.height * PIXEL, "so_long");
+			game->img.width * X, game->img.height * Y, "so_long");
 	draw_map(game, 0, 0);
 	mlx_hook(game->win, 2, 1L << 0, press_key, game);
 	mlx_hook(game->win, DESTROY, 1L << 0, close_window, game);

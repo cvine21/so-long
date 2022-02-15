@@ -20,23 +20,23 @@ void	xpm_to_img(t_game *game, int j, int i)
 		while (++j < game->img.width)
 		{
 			mlx_put_image_to_window(game->mlx, game->win,
-				game->img.ground, PIXEL * j, PIXEL * i);
+				game->img.ground, X * j, Y * i);
 			if (game->map[i][j] == '1')
 				mlx_put_image_to_window(game->mlx, game->win,
-					game->img.wall, PIXEL * j, PIXEL * i);
+					game->img.wall, X * j, Y * i);
 			else if (game->map[i][j] == 'P')
 			{
 				mlx_put_image_to_window(game->mlx, game->win,
-					game->img.player, PIXEL * j, PIXEL * i);
+					game->img.player, X * j, Y * i);
 				game->hero.x = j;
 				game->hero.y = i;
 			}
 			else if (game->map[i][j] == 'C')
 				mlx_put_image_to_window(game->mlx, game->win,
-					game->img.collectible, PIXEL * j, PIXEL * i);
+					game->img.collectible, X * j, Y * i);
 			else if (game->map[i][j] == 'E')
 				mlx_put_image_to_window(game->mlx, game->win,
-					game->img.exit, PIXEL * j, PIXEL * i);
+					game->img.exit, X * j, Y * i);
 		}
 	}
 }

@@ -19,7 +19,8 @@
 # define D			2
 # define ESC		53
 # define DESTROY	17
-# define PIXEL		64
+# define X			64
+# define Y			64
 # define RIGHT		"./assets/rfrog.xpm"
 # define RIGHT1		"./assets/rfrog1.xpm"
 # define RIGHT2		"./assets/rfrog2.xpm"
@@ -38,7 +39,7 @@
 # define ENEMY4		"./assets/rbat5.xpm"
 # define ENEMY5		"./assets/rbat6.xpm"
 # define ENEMY6		"./assets/rbat7.xpm"
-# define SWORD		"./assets/Sword.xpm"
+# define COUNTER	"./assets/Sword.xpm"
 
 # include "libft.h"
 # include <mlx.h>
@@ -55,10 +56,12 @@ typedef struct s_player
 	int	dir_flag;
 }	t_player;
 
-// typedef	struct  s_enemy
-// {
-// 	int		wing_flag;
-// }	t_enemy;
+typedef	struct  s_enemy
+{
+	int	x;
+	int	y;
+	// int		wing_flag;
+}	t_enemy;
 
 
 typedef struct	s_img
@@ -69,7 +72,7 @@ typedef struct	s_img
 	void	*ground;
 	void	*collectible;
 	void	*enemy;
-	void	*sword;
+	void	*counter;
 	int		width;
 	int		height;
 }	t_img;
@@ -87,6 +90,8 @@ typedef struct s_game
 	int			c_num;
 	int			end_of_map;
 	int			wing_flag;
+	int			enemy_flag;
+	int			dir_flag;
 }	t_game;
 
 int		close_window(t_game *game);

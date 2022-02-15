@@ -18,12 +18,52 @@ void	animate_enemy(t_game *game, int wh, char *name, int flag)
 	game->img.enemy = mlx_xpm_file_to_image(game->mlx, name, &wh, &wh);
 }
 
+void	move_enemy(t_game *game, char **map, int i, int j)
+{
+	(void) game;
+	usleep(150000);
+	if (map[i][j + 1] != 'x' && map[i][j + 1] != '1')
+	{
+		map[i][j] = 'x';
+		map[i][j + 1] = 'X';
+		j++;
+	}
+	else if (map[i][j - 1] != 'x' && map[i][j - 1] != '1')
+	{
+		map[i][j] = 'x';
+		map[i][j - 1] = 'X';
+		j--;
+	}
+	if (map[i][j + 1] == '1' && map[i][j - 1] == 'x')
+	{
+		map[i][j - 1] = '0';
+		// return ;
+	}
+	else if (map[i][j - 1] == '1' && map[i][j + 1] == 'x')
+		map[i][j + 1] = '0';
+}
+
+void	render_enemy(t_game *game, int i, int j)
+{
+	while (++i < game->img.height)
+	{
+		j = -1;
+		while (++j < game->img.width)
+		{
+			if (game->map[i][j] == 'x')
+				mlx_put_image_to_window(game->mlx, game->win, game->img.ground, X * j, Y * i);
+			if (game->map[i][j] == 'X')
+			{
+				move_enemy(game, game->map, i, j);
+				mlx_put_image_to_window(game->mlx, game->win, game->img.ground, X * j, Y * i);
+				mlx_put_image_to_window(game->mlx, game->win, game->img.enemy, X * j, Y * i);
+			}
+		}
+	}
+}
+
 int	handle_enemy(t_game *game)
 {
-	int i;
-	int j;
-
-	i = -1;
 	mlx_do_sync(game->mlx);
 	if (!game->wing_flag)
 		animate_enemy(game, 0, ENEMY1, 1);
@@ -39,35 +79,22 @@ int	handle_enemy(t_game *game)
 		animate_enemy(game, 0, ENEMY6, 6);
 	else if (game->wing_flag == 6)
 		animate_enemy(game, 0, ENEMY, 0);
-	while (++i < game->img.height)
-	{
-		j = -1;
-		while (++j < game->img.width)
-		{
-			if (game->map[i][j] == 'X')
-			{
-				mlx_put_image_to_window(game->mlx, game->win, game->img.ground, PIXEL * j, PIXEL * i);
-				mlx_put_image_to_window(game->mlx, game->win, game->img.enemy, PIXEL * j, PIXEL * i);
-			}
-		}
-	}
+	render_enemy(game, -1, -1);
 	return (0);
 }
 
-int	key_up(int keysym, t_game *game, int width, int height)
+int	key_up(int keysym, t_game *game, int w, int h)
 {
 	mlx_put_image_to_window(game->mlx, game->win, game->img.ground,
-				PIXEL * game->hero.x, PIXEL * game->hero.y);
+				X * game->hero.x, Y * game->hero.y);
 	if (keysym == W || keysym == A || keysym == S || keysym == D)
 		game->hero.move_flag = 0;
 	if (!game->hero.dir_flag)
-		game->img.player = mlx_xpm_file_to_image(game->mlx,
-			RIGHT, &width, &height);
+		game->img.player = mlx_xpm_file_to_image(game->mlx, RIGHT, &w, &h);
 	else
-		game->img.player = mlx_xpm_file_to_image(game->mlx,
-			LEFT, &width, &height);
+		game->img.player = mlx_xpm_file_to_image(game->mlx, LEFT, &w, &h);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.player,
-			PIXEL * game->hero.x, PIXEL * game->hero.y);
+			X * game->hero.x, Y * game->hero.y);
 	return (0);
 }
 
@@ -80,11 +107,11 @@ int	main(int argc, char **argv)
 	create_map (argv[1], game);
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx,
-			game->img.width * PIXEL, game->img.height * PIXEL, "so_long");
+			game->img.width * X, game->img.height * Y, "so_long");
 	draw_map(game, 0, 0);
-	mlx_loop_hook(game->mlx, handle_enemy, game);
 	mlx_key_hook(game->win, key_up, game);
 	mlx_hook(game->win, 2, 1L << 0, press_key, game);
 	mlx_hook(game->win, DESTROY, 1L << 0, close_window, game);
+	mlx_loop_hook(game->mlx, handle_enemy, game);
 	mlx_loop(game->mlx);
 }

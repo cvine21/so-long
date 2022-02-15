@@ -20,42 +20,39 @@ void	xpm_to_img(t_game *game, int j, int i)
 		while (++j < game->img.width)
 		{
 			mlx_put_image_to_window(game->mlx, game->win,
-				game->img.ground, PIXEL * j, PIXEL * i);
+				game->img.ground, X * j, Y * i);
 			if (game->map[i][j] == '1')
 				mlx_put_image_to_window(game->mlx, game->win,
-					game->img.wall, PIXEL * j, PIXEL * i);
+					game->img.wall, X * j, Y * i);
 			else if (game->map[i][j] == 'P')
 			{
 				mlx_put_image_to_window(game->mlx, game->win,
-					game->img.player, PIXEL * j, PIXEL * i);
+					game->img.player, X * j, Y * i);
 				game->hero.x = j;
 				game->hero.y = i;
 			}
 			else if (game->map[i][j] == 'C')
 				mlx_put_image_to_window(game->mlx, game->win,
-					game->img.collectible, PIXEL * j, PIXEL * i);
+					game->img.collectible, X * j, Y * i);
 			else if (game->map[i][j] == 'E')
 				mlx_put_image_to_window(game->mlx, game->win,
-					game->img.exit, PIXEL * j, PIXEL * i);
+					game->img.exit, X * j, Y * i);
 			else if (game->map[i][j] == 'X')
 				mlx_put_image_to_window(game->mlx, game->win,
-					game->img.enemy, PIXEL * j, PIXEL * i);
+					game->img.enemy, X * j, Y * i);
 		}
 	}
-	mlx_put_image_to_window(game->mlx, game->win, game->img.sword, 0, 0);
+	mlx_put_image_to_window(game->mlx, game->win, game->img.counter, 0, 0);
 }
 
-void	draw_map(t_game *game, int width, int height)
+void	draw_map(t_game *game, int w, int h)
 {
-	game->img.wall = mlx_xpm_file_to_image(game->mlx, WALL, &width, &height);
-	game->img.ground = mlx_xpm_file_to_image(game->mlx,
-			GROUND, &width, &height);
-	game->img.player = mlx_xpm_file_to_image(game->mlx,
-			PLAYER, &width, &height);
-	game->img.collectible = mlx_xpm_file_to_image(game->mlx,
-			COLLECT, &width, &height);
-	game->img.exit = mlx_xpm_file_to_image(game->mlx, EXIT, &width, &height);
-	game->img.enemy = mlx_xpm_file_to_image(game->mlx, ENEMY, &width, &height);
-	game->img.sword = mlx_xpm_file_to_image(game->mlx, SWORD, &width, &height);
+	game->img.wall = mlx_xpm_file_to_image(game->mlx, WALL, &w, &h);
+	game->img.ground = mlx_xpm_file_to_image(game->mlx, GROUND, &w, &h);
+	game->img.player = mlx_xpm_file_to_image(game->mlx, PLAYER, &w, &h);
+	game->img.collectible = mlx_xpm_file_to_image(game->mlx, COLLECT, &w, &h);
+	game->img.exit = mlx_xpm_file_to_image(game->mlx, EXIT, &w, &h);
+	game->img.enemy = mlx_xpm_file_to_image(game->mlx, ENEMY, &w, &h);
+	game->img.counter = mlx_xpm_file_to_image(game->mlx, COUNTER, &w, &h);
 	xpm_to_img(game, -1, -1);
 }
