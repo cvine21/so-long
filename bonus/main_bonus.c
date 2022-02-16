@@ -18,29 +18,45 @@ void	animate_enemy(t_game *game, int wh, char *name, int flag)
 	game->img.enemy = mlx_xpm_file_to_image(game->mlx, name, &wh, &wh);
 }
 
+void	choose_dir(t_game *game, char **map, int i, int j)
+{
+	if ((map[i][j] == 'X' && map[i][j - 1] != '1')
+		|| (map[i][j] == 'x' && map[i][j + 1] == '1'))
+	{
+		map[i][j] = '0';
+		map[i][j - 1] = 'X';
+	}
+	else if ((map[i][j] == 'X' && map[i][j - 1] == '1')
+			|| (map[i][j] == 'x' && map[i][j + 1] != '1'))
+	{
+		map[i][j] = '0';
+		map[i][j + 1] = 'x';
+	}
+	mlx_put_image_to_window(game->mlx, game->win, game->img.ground, X * j, Y * i);
+	// else if (map[i][j] == 'C')
+	// 	mlx_put_image_to_window(game->mlx, game->win, game->img.collectible, X * j, Y * i);
+}
+
 void	move_enemy(t_game *game, char **map, int i, int j)
 {
-	(void) game;
-	usleep(150000);
-	if (map[i][j + 1] != 'x' && map[i][j + 1] != '1')
+	static int delay;
+
+	if (++delay == 21)
+		delay = 0;
+	else
+		return ;
+	while (++i < game->img.height)
 	{
-		map[i][j] = 'x';
-		map[i][j + 1] = 'X';
-		j++;
+		j = -1;
+		while (++j < game->img.width)
+		{
+			if (map[i][j] == 'X' || map[i][j] == 'x')
+			{
+				choose_dir(game, game->map, i, j);
+				j++;
+			}
+		}
 	}
-	else if (map[i][j - 1] != 'x' && map[i][j - 1] != '1')
-	{
-		map[i][j] = 'x';
-		map[i][j - 1] = 'X';
-		j--;
-	}
-	if (map[i][j + 1] == '1' && map[i][j - 1] == 'x')
-	{
-		map[i][j - 1] = '0';
-		// return ;
-	}
-	else if (map[i][j - 1] == '1' && map[i][j + 1] == 'x')
-		map[i][j + 1] = '0';
 }
 
 void	render_enemy(t_game *game, int i, int j)
@@ -50,11 +66,10 @@ void	render_enemy(t_game *game, int i, int j)
 		j = -1;
 		while (++j < game->img.width)
 		{
-			if (game->map[i][j] == 'x')
-				mlx_put_image_to_window(game->mlx, game->win, game->img.ground, X * j, Y * i);
-			if (game->map[i][j] == 'X')
+			if (game->map[i][j] == 'X' || game->map[i][j] == 'x')
 			{
-				move_enemy(game, game->map, i, j);
+				if (i == game->hero.y && j == game->hero.x)
+					terminate("WASTED", 0);
 				mlx_put_image_to_window(game->mlx, game->win, game->img.ground, X * j, Y * i);
 				mlx_put_image_to_window(game->mlx, game->win, game->img.enemy, X * j, Y * i);
 			}
@@ -79,6 +94,7 @@ int	handle_enemy(t_game *game)
 		animate_enemy(game, 0, ENEMY6, 6);
 	else if (game->wing_flag == 6)
 		animate_enemy(game, 0, ENEMY, 0);
+	move_enemy(game, game->map, -1, -1);
 	render_enemy(game, -1, -1);
 	return (0);
 }

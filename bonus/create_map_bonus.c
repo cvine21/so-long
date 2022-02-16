@@ -68,8 +68,6 @@ t_game	*map_init(void)
 	map->hero.move_flag = 0;
 	map->hero.dir_flag = 0;
 	map->wing_flag = 0;
-	map->dir_flag = 0;
-	map->enemy_flag = 0;
 	return (map);
 }
 

@@ -56,14 +56,6 @@ typedef struct s_player
 	int	dir_flag;
 }	t_player;
 
-typedef	struct  s_enemy
-{
-	int	x;
-	int	y;
-	// int		wing_flag;
-}	t_enemy;
-
-
 typedef struct	s_img
 {
 	void	*wall;
@@ -84,14 +76,11 @@ typedef struct s_game
 	char		**map;
 	t_img		img;
 	t_player	hero;
-	// t_enemy		enemy;
 	int			e_num;
 	int			p_num;
 	int			c_num;
 	int			end_of_map;
 	int			wing_flag;
-	int			enemy_flag;
-	int			dir_flag;
 }	t_game;
 
 int		close_window(t_game *game);
