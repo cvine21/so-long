@@ -22,9 +22,11 @@ void	print_moves(t_game *game)
 {
 	char	*moves;
 
-	mlx_put_image_to_window(game->mlx, game->win, game->img.counter, 0, 0);
+	mlx_put_image_to_window(game->mlx, game->win, game->img.banner1, 0, 0);
+	mlx_put_image_to_window(game->mlx, game->win, game->img.banner2, X, 0);
+	mlx_put_image_to_window(game->mlx, game->win, game->img.banner3, X * 2, 0);
 	moves = ft_strjoin("MOVES: ", ft_itoa(game->hero.moves));
-	mlx_string_put(game->mlx, game->win, X * 0, Y / 1.75, 0x0, moves);
+	mlx_string_put(game->mlx, game->win, X, Y / 1.75, 0x0, moves);
 	free(moves);
 }
 

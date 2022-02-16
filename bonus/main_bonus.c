@@ -20,21 +20,19 @@ void	animate_enemy(t_game *game, int wh, char *name, int flag)
 
 void	choose_dir(t_game *game, char **map, int i, int j)
 {
-	if ((map[i][j] == 'X' && map[i][j - 1] != '1')
-		|| (map[i][j] == 'x' && map[i][j + 1] == '1'))
+	if ((map[i][j] == 'X' && map[i][j - 1] == '0')
+		|| (map[i][j] == 'x' && map[i][j + 1] != '0'))
 	{
 		map[i][j] = '0';
 		map[i][j - 1] = 'X';
 	}
-	else if ((map[i][j] == 'X' && map[i][j - 1] == '1')
-			|| (map[i][j] == 'x' && map[i][j + 1] != '1'))
+	else if ((map[i][j] == 'X' && map[i][j - 1] != '0')
+			|| (map[i][j] == 'x' && map[i][j + 1] == '0'))
 	{
 		map[i][j] = '0';
 		map[i][j + 1] = 'x';
 	}
 	mlx_put_image_to_window(game->mlx, game->win, game->img.ground, X * j, Y * i);
-	// else if (map[i][j] == 'C')
-	// 	mlx_put_image_to_window(game->mlx, game->win, game->img.collectible, X * j, Y * i);
 }
 
 void	move_enemy(t_game *game, char **map, int i, int j)

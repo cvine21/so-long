@@ -42,7 +42,9 @@ void	xpm_to_img(t_game *game, int j, int i)
 					game->img.enemy, X * j, Y * i);
 		}
 	}
-	mlx_put_image_to_window(game->mlx, game->win, game->img.counter, 0, 0);
+	mlx_put_image_to_window(game->mlx, game->win, game->img.banner1, 0, 0);
+	mlx_put_image_to_window(game->mlx, game->win, game->img.banner2, X, 0);
+	mlx_put_image_to_window(game->mlx, game->win, game->img.banner3, X * 2, 0);
 }
 
 void	draw_map(t_game *game, int w, int h)
@@ -53,6 +55,8 @@ void	draw_map(t_game *game, int w, int h)
 	game->img.collectible = mlx_xpm_file_to_image(game->mlx, COLLECT, &w, &h);
 	game->img.exit = mlx_xpm_file_to_image(game->mlx, EXIT, &w, &h);
 	game->img.enemy = mlx_xpm_file_to_image(game->mlx, ENEMY, &w, &h);
-	game->img.counter = mlx_xpm_file_to_image(game->mlx, COUNTER, &w, &h);
+	game->img.banner1 = mlx_xpm_file_to_image(game->mlx, BANNER1, &w, &h);
+	game->img.banner2 = mlx_xpm_file_to_image(game->mlx, BANNER2, &w, &h);
+	game->img.banner3 = mlx_xpm_file_to_image(game->mlx, BANNER3, &w, &h);
 	xpm_to_img(game, -1, -1);
 }

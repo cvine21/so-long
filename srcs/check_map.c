@@ -25,6 +25,8 @@ void	check_chars(t_game *map, char *line)
 			map->c_num++;
 		else if (line[i] == 'P')
 			map->p_num++;
+		else if (line[i] != '0' && line[i] != '1')
+			terminate("Error\nUnknown character on the map", 1);
 		i++;
 	}
 }

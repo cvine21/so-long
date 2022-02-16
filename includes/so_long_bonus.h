@@ -40,6 +40,9 @@
 # define ENEMY5		"./assets/rbat6.xpm"
 # define ENEMY6		"./assets/rbat7.xpm"
 # define COUNTER	"./assets/Sword.xpm"
+# define BANNER1	"./assets/banner1.xpm"
+# define BANNER2	"./assets/banner2.xpm"
+# define BANNER3	"./assets/banner3.xpm"
 
 # include "libft.h"
 # include <mlx.h>
@@ -64,7 +67,9 @@ typedef struct	s_img
 	void	*ground;
 	void	*collectible;
 	void	*enemy;
-	void	*counter;
+	void	*banner1;
+	void	*banner2;
+	void	*banner3;
 	int		width;
 	int		height;
 }	t_img;
