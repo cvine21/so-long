@@ -6,11 +6,11 @@
 /*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 12:02:57 by cvine             #+#    #+#             */
-/*   Updated: 2022/02/17 12:38:12 by ifanzilka        ###   ########.fr       */
+/*   Updated: 2022/02/17 19:15:53 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
 void	check_chars(t_game *map, char *line)
 {

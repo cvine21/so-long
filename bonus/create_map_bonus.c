@@ -6,11 +6,11 @@
 /*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 17:35:46 by cvine             #+#    #+#             */
-/*   Updated: 2022/02/17 12:38:20 by ifanzilka        ###   ########.fr       */
+/*   Updated: 2022/02/17 19:15:53 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
 int	open_map(char *argv, int fd)
 {

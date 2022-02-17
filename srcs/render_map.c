@@ -6,7 +6,7 @@
 /*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 19:05:15 by cvine             #+#    #+#             */
-/*   Updated: 2022/02/17 12:46:50 by ifanzilka        ###   ########.fr       */
+/*   Updated: 2022/02/17 23:49:42 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,11 @@ void	put_image(t_game *game, int j, int i)
 	}
 }
 
-void	render_map(t_game *game, int w, int h)
+void	render_map(t_game *game)
 {
+	int	w;
+	int	h;
+
 	game->img.wall = mlx_xpm_file_to_image(game->mlx, WALL, &w, &h);
 	game->img.ground = mlx_xpm_file_to_image(game->mlx, GROUND, &w, &h);
 	game->img.player = mlx_xpm_file_to_image(game->mlx, PLAYER, &w, &h);

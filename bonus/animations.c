@@ -6,11 +6,11 @@
 /*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 10:50:51 by cvine             #+#    #+#             */
-/*   Updated: 2022/02/17 12:37:47 by ifanzilka        ###   ########.fr       */
+/*   Updated: 2022/02/17 19:15:53 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
 void	animate(t_game *game, char *name, int flag, char c)
 {

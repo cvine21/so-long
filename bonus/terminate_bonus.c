@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   terminate.c                                        :+:      :+:    :+:   */
+/*   terminate_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cvine <cvine@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 11:57:51 by cvine             #+#    #+#             */
-/*   Updated: 2022/01/29 11:57:56 by cvine            ###   ########.fr       */
+/*   Updated: 2022/02/17 19:15:53 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
 void	terminate(char *errname, int status)
 {

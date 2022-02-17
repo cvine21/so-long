@@ -6,11 +6,11 @@
 /*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 12:12:09 by cvine             #+#    #+#             */
-/*   Updated: 2022/02/17 12:38:31 by ifanzilka        ###   ########.fr       */
+/*   Updated: 2022/02/17 19:15:53 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
 void	render_enemy(t_game *game, int i, int j)
 {

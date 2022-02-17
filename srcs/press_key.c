@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   press_key.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cvine <cvine@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 14:45:42 by cvine             #+#    #+#             */
-/*   Updated: 2022/02/01 16:05:30 by cvine            ###   ########.fr       */
+/*   Updated: 2022/02/17 19:15:53 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,13 @@ int	close_window(t_game *game)
 {
 	mlx_destroy_window(game->mlx, game->win);
 	exit (0);
+}
+
+void	print_moves(t_game *game)
+{
+	ft_putstr_fd("MOVES: ", 1);
+	ft_putnbr_fd(game->hero.moves, 1);
+	ft_putendl_fd("", 1);
 }
 
 void	move_player(t_game *game, int x, int y)
@@ -37,11 +44,11 @@ void	move_player(t_game *game, int x, int y)
 	}
 	mlx_put_image_to_window(game->mlx, game->win, game->img.player,
 		X * game->hero.x, Y * game->hero.y);
-	printf("MOVES:%d\n", game->hero.moves);
+	print_moves(game);
 	if (game->map[game->hero.y][game->hero.x] == 'E' && !game->c_num)
 		terminate("YOU WON!", 0);
 	if (game->map[game->hero.y][game->hero.x] == 'E' && game->c_num)
-		printf("Sorry, collect all the aplles\n");
+		ft_putendl_fd("Sorry, collect all the aplles", 1);
 }
 
 int	press_key(int keysym, t_game *game)

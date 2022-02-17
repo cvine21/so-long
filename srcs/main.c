@@ -6,7 +6,7 @@
 /*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 19:03:05 by cvine             #+#    #+#             */
-/*   Updated: 2022/02/17 12:46:34 by ifanzilka        ###   ########.fr       */
+/*   Updated: 2022/02/17 19:15:53 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx,
 			game->img.width * X, game->img.height * Y, "so_long");
-	render_map(game, 0, 0);
+	render_map(game);
 	mlx_hook(game->win, 2, 1L << 0, press_key, game);
 	mlx_hook(game->win, DESTROY, 1L << 0, close_window, game);
 	mlx_loop(game->mlx);
