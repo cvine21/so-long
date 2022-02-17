@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cvine <cvine@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 12:02:57 by cvine             #+#    #+#             */
-/*   Updated: 2022/02/01 15:46:02 by cvine            ###   ########.fr       */
+/*   Updated: 2022/02/17 12:44:53 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,11 @@ void	check_chars(t_game *map, char *line)
 		else if (line[i] == 'C')
 			map->c_num++;
 		else if (line[i] == 'P')
+		{
 			map->p_num++;
+			map->hero.x = i;
+			map->hero.y = map->img.height - 1;
+		}
 		else if (line[i] != '0' && line[i] != '1')
 			terminate("Error\nUnknown character on the map", 1);
 		i++;

@@ -13,10 +13,11 @@ HEADER_DIR	=	includes/
 LIBFT		=	libft.a
 
 SRCS_LST	=	main.c		check_map.c		terminate.c\
-				create_map.c	draw_map.c		press_key.c
+				create_map.c	render_map.c		press_key.c
 
 B_SRCS_LST	=	main_bonus.c		check_map_bonus.c	terminate_bonus.c\
-				create_map_bonus.c	draw_map_bonus.c	press_key_bonus.c
+				create_map_bonus.c	render_map_bonus.c	handle_keys.c\
+				animations.c		movements.c			handle_enemy.c
 
 SRCS		=	$(addprefix $(SRCS_DIR), $(SRCS_LST))
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cvine <cvine@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cvine <cvine@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 17:35:43 by cvine             #+#    #+#             */
-/*   Updated: 2022/02/01 16:05:38 by cvine            ###   ########.fr       */
+/*   Updated: 2022/02/17 12:13:03 by cvine        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,21 @@ typedef struct s_game
 	int			wing_flag;
 }	t_game;
 
+void	print_moves(t_game *game);
+void	choose_dir(t_game *game, char **map, int i, int j);
+void	render_enemy(t_game *game, int i, int j);
+void	move_player(t_game *game, int x, int y);
+void	animate_player(t_game *game);
+void	animate_enemy(t_game *game);
+void	render_enemy(t_game *game, int i, int j);
+void	move_enemy(t_game *game, char **map, int i, int j);
+int		handle_enemy(t_game *game);
+int		key_up(int keysym, t_game *game, int w, int h);
 int		close_window(t_game *game);
 int		press_key(int keysym, t_game *game);
 void	xmp_to_img(t_game *map, int width, int height);
-t_game	*map_init(void);
-void	draw_map(t_game *game, int width, int height);
+t_game	*game_init(void);
+void	render_map(t_game *game);
 
 void	terminate(char *errname, int status);
 void	check_args(int argc, char **argv);
