@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
+/*   By: cvine <cvine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 10:56:09 by cvine             #+#    #+#             */
-/*   Updated: 2022/02/17 19:15:53 by ifanzilka        ###   ########.fr       */
+/*   Updated: 2022/02/18 11:46:49 by cvine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,17 @@
 void	print_moves(t_game *game)
 {
 	char	*moves;
+	char	*num;
 
 	mlx_put_image_to_window(game->mlx, game->win, game->img.banner1, 0, 0);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.banner2, X, 0);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.banner3, X * 2, 0);
-	moves = ft_strjoin("MOVES: ", ft_itoa(game->hero.moves));
+	moves = ft_strdup("MOVES: ");
+	num = ft_itoa(game->hero.moves);
 	mlx_string_put(game->mlx, game->win, X, Y / 1.75, 0x0, moves);
+	mlx_string_put(game->mlx, game->win, X * 1.7, Y / 1.75, 0x0, num);
 	free(moves);
+	free(num);
 }
 
 void	choose_dir(t_game *game, char **map, int i, int j)
