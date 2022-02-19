@@ -10,10 +10,10 @@ BSRCS_DIR	= 	bonus/
 
 HEADER_DIR	=	includes/
 
-SRCS_LST	=	main.c			check_map.c		terminate.c\
+SRCS_LST	=	main.c			parse.c			terminate.c\
 				create_map.c	render_map.c	press_key.c
 
-BSRCS_LST	=	main_bonus.c		check_map_bonus.c	terminate_bonus.c\
+BSRCS_LST	=	main_bonus.c		parse_bonus.c	terminate_bonus.c\
 				create_map_bonus.c	render_map_bonus.c	handle_keys.c\
 				animations.c		movements.c			handle_enemy.c
 

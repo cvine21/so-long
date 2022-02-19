@@ -84,7 +84,7 @@ typedef struct s_game
 	int			e_num;
 	int			p_num;
 	int			c_num;
-	int			end_of_map;
+	int			bottom_wall;
 	int			wing_flag;
 }	t_game;
 

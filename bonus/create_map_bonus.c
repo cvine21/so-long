@@ -6,7 +6,7 @@
 /*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 17:35:46 by cvine             #+#    #+#             */
-/*   Updated: 2022/02/17 19:15:53 by ifanzilka        ###   ########.fr       */
+/*   Updated: 2022/02/18 23:17:14 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_game	*game_init(void)
 	map->p_num = 0;
 	map->c_num = 0;
 	map->e_num = 0;
-	map->end_of_map = 1;
+	map->bottom_wall = 1;
 	map->hero.moves = 0;
 	map->hero.move_flag = 0;
 	map->hero.dir_flag = 0;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map.c                                        :+:      :+:    :+:   */
+/*   parse_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 12:02:57 by cvine             #+#    #+#             */
-/*   Updated: 2022/02/17 19:15:53 by ifanzilka        ###   ########.fr       */
+/*   Updated: 2022/02/18 23:17:14 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	check_chars(t_game *map, char *line)
 			map->hero.x = i;
 			map->hero.y = map->img.height - 1;
 		}
-		else if (line[i] != '0' && line[i] != '1')
+		else if (line[i] != '0' && line[i] != '1' && line[i] != 'X')
 			terminate("Error\nUnknown character on the map", 1);
 		i++;
 	}
@@ -40,9 +40,9 @@ void	check_walls(t_game *map, int width, char *line)
 	int	i;
 
 	i = 0;
-	if (!line && map->end_of_map)
+	if (!line && map->bottom_wall)
 		terminate("Error\nAn empty map or a hole in the bottom wall", 1);
-	if ((line && !map->end_of_map) || !width)
+	if ((line && !map->bottom_wall) || !width)
 		return ;
 	if (width != map->img.width)
 		terminate("Error\nMap is not rectangular", 1);
@@ -50,7 +50,7 @@ void	check_walls(t_game *map, int width, char *line)
 		i++;
 	if (map->img.height > 1 && (line[i] == '\0' || line[i] == '\n'))
 	{
-		map->end_of_map = 0;
+		map->bottom_wall = 0;
 		return ;
 	}
 	if ((map->img.height == 1 && line[i] && line[i] != '1' && line[i] != '\n')
@@ -61,14 +61,11 @@ void	check_walls(t_game *map, int width, char *line)
 
 void	check_map(t_game	*map, char *line, int fd)
 {
-	int	i;
 	int	width;
 
-	i = -1;
 	line = get_next_line(fd);
 	while (line)
 	{
-		i++;
 		if (!strrchr(line, '\n'))
 			width = ft_strlen(line);
 		else
@@ -81,7 +78,7 @@ void	check_map(t_game	*map, char *line, int fd)
 		free(line);
 		line = get_next_line(fd);
 	}
-	if (map->end_of_map)
+	if (map->bottom_wall)
 		check_walls(map, width, line);
 	if (!(map->e_num) || !(map->c_num) || map->p_num != 1)
 		terminate("Error\nWrong map composition", 1);

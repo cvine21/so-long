@@ -6,7 +6,7 @@
 /*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 17:35:46 by cvine             #+#    #+#             */
-/*   Updated: 2022/02/17 19:15:53 by ifanzilka        ###   ########.fr       */
+/*   Updated: 2022/02/18 23:17:14 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	fill_map(t_game *game, int fd, char *argv, char *line)
 	}
 	fd = open_map(argv, 0);
 	line = get_next_line(fd);
+	while (line && *line == '\n')
+		line = get_next_line(fd);
 	while (line)
 	{
 		game->map[i] = ft_strtrim(line, "\n");
@@ -63,7 +65,8 @@ t_game	*game_init(void)
 	map->p_num = 0;
 	map->c_num = 0;
 	map->e_num = 0;
-	map->end_of_map = 1;
+	map->bottom_wall = 1;
+	map->hero.moves = 0;
 	return (map);
 }
 
@@ -72,7 +75,7 @@ void	create_map(char *argv, t_game	*map)
 	int		fd;
 
 	fd = open_map(argv, 0);
-	check_map(map, NULL, fd);
+	check_map(map, get_next_line(fd), fd);
 	close(fd);
 	fill_map(map, 0, argv, NULL);
 }
