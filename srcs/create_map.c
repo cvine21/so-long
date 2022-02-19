@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
+/*   By: cvine <cvine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 17:35:46 by cvine             #+#    #+#             */
-/*   Updated: 2022/02/18 23:17:14 by ifanzilka        ###   ########.fr       */
+/*   Updated: 2022/02/19 12:13:33 by cvine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ void	fill_map(t_game *game, int fd, char *argv, char *line)
 	}
 	fd = open_map(argv, 0);
 	line = get_next_line(fd);
-	while (line && *line == '\n')
-		line = get_next_line(fd);
 	while (line)
 	{
 		game->map[i] = ft_strtrim(line, "\n");

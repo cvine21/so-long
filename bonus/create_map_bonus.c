@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_map_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
+/*   By: cvine <cvine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 17:35:46 by cvine             #+#    #+#             */
-/*   Updated: 2022/02/18 23:17:14 by ifanzilka        ###   ########.fr       */
+/*   Updated: 2022/02/19 12:22:29 by cvine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	create_map(char *argv, t_game	*map)
 	int		fd;
 
 	fd = open_map(argv, 0);
-	check_map(map, NULL, fd);
+	check_map(map, get_next_line(fd), fd);
 	close(fd);
 	fill_map(map, 0, argv, NULL);
 }
