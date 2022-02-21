@@ -59,7 +59,7 @@ typedef struct s_player
 	int	dir_flag;
 }	t_player;
 
-typedef struct	s_img
+typedef struct s_img
 {
 	void	*wall;
 	void	*player;

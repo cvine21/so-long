@@ -6,7 +6,7 @@
 /*   By: cvine <cvine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 12:02:57 by cvine             #+#    #+#             */
-/*   Updated: 2022/02/19 12:13:24 by cvine            ###   ########.fr       */
+/*   Updated: 2022/02/21 17:15:51 by cvine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	check_walls(t_game *map, int width, char *line)
 	if (map->img.height > 1 && (!line[i] || line[i] == '\n'))
 		map->bottom_wall = 0;
 	if (map->img.height == 1 && line[i] && line[i] != '\n')
-		terminate("Hole or unknown character in the upper wall", 1);
+		terminate("Error\nHole or unknown character in the upper wall", 1);
 	if (line[0] != '1' || line[width - 1] != '1')
 		terminate("Error\nHole in the side wall", 1);
 	check_chars(map, line);

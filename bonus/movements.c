@@ -6,7 +6,7 @@
 /*   By: cvine <cvine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 10:56:09 by cvine             #+#    #+#             */
-/*   Updated: 2022/02/19 12:13:22 by cvine            ###   ########.fr       */
+/*   Updated: 2022/02/21 17:04:58 by cvine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	print_moves(t_game *game)
 
 void	choose_dir(t_game *game, char **map, int i, int j)
 {
+	if (map[i][j - 1] != '0' && map[i][j + 1] != '0')
+		return ;
 	if ((map[i][j] == 'X' && map[i][j - 1] == '0')
 		|| (map[i][j] == 'x' && map[i][j + 1] != '0'))
 	{
